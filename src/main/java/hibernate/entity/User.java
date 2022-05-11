@@ -1,7 +1,11 @@
 package hibernate.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -10,7 +14,7 @@ import java.util.Set;
         "login"
     })
 })
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_generator")
     @SequenceGenerator(name = "user_id_generator", sequenceName = "sq_user_id", allocationSize = 1)
@@ -26,7 +30,7 @@ public class User {
 
     private String email;
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
         name = "user_desk",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -46,6 +50,7 @@ public class User {
         this.email = email;
     }
 
+    @JsonIgnore
     public Set<Desk> getDesks() {
         return desks;
     }
@@ -98,6 +103,7 @@ public class User {
         this.lastName = lastName;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -112,5 +118,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return login.equals(user.login);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login);
     }
 }

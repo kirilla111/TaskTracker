@@ -43,15 +43,20 @@ public class SecurityService {
 
         UserPrinciple user = usersMap.get(token);
         if (new Date().getTime() - user.getLoginDate().getTime() < TOKEN_EXPIRATION) {
-            System.out.println("desks->");
-            for (Desk d : user.getUser().getDesks()) {
-                System.out.println(d.getTitle());
-            }
             return user.getUser();
         } else {
             usersMap.remove(token);
             throw new Exception("Token already expired!");
         }
+    }
+
+    public void setUser(String token, User user) throws Exception {
+        if (!usersMap.containsKey(token)) {
+            throw new Exception("Wrong token!");
+        }
+
+        UserPrinciple userPrinciple = usersMap.get(token);
+        userPrinciple.setUser(user);
     }
 
     private String generateToken() {

@@ -17,6 +17,7 @@ spring:
       characterEncoding: UTF-8
       useUnicode: true
       hibernate:
+        enable_lazy_load_no_trans: true
         naming:
           implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
           physical-strateg: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
@@ -27,3 +28,5 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+hibernate:
+  enable_lazy_load_no_trans: true
