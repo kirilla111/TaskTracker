@@ -1,7 +1,16 @@
 package hibernate.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Set;
+
+@Getter @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "PILLAR")
 public class Pillar {
@@ -12,26 +21,21 @@ public class Pillar {
 
     private String title;
 
+    @org.hibernate.annotations.OrderBy(clause = "id ASC")
+    @OneToMany
+    @JoinColumn(name = "pillar_id")
+    private Set<Card> cards;
+
     public Pillar(String title) {
         this.title = title;
     }
 
-    public Pillar() {
+
+    public void addCard(Card... cards) {
+        this.cards.addAll(Arrays.asList(cards));
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void addCard(Card card) {
+        this.cards.add(card);
     }
 }

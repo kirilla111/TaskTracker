@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "8e98e02c-c22d-44cd-bf38-fff24a82e715",
+		"name": "PD-2022",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"login\": \"u2\",\r\n  \"email\": \"sv2@mail.ru1\",\r\n  \"firstName\": \"sv\",\r\n  \"patronymic\": \"ser\",\r\n  \"lastName\": \"km\",\r\n  \"password\": \"u2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/user/login?login=u1&password=u1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "u1"
+						},
+						{
+							"key": "password",
+							"value": "u1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDesks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/desk/get-all-desks?token=1ge723jbezcq3h8rbbgtemfwvajbv8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"desk",
+						"get-all-desks"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "1ge723jbezcq3h8rbbgtemfwvajbv8"
+						},
+						{
+							"key": "password",
+							"value": "u1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateDesk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/desk/create?token=mqqc9fv24j682v8r9b3m98egveb476&title=D2&description=Second Desk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"desk",
+						"create"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "mqqc9fv24j682v8r9b3m98egveb476"
+						},
+						{
+							"key": "title",
+							"value": "D2"
+						},
+						{
+							"key": "description",
+							"value": "Second Desk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/desk/add-user?token=4f6ghct8323eqcx44eqbc67begavn5&newUserLogin=u2&deskId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"desk",
+						"add-user"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "4f6ghct8323eqcx44eqbc67begavn5"
+						},
+						{
+							"key": "newUserLogin",
+							"value": "u2"
+						},
+						{
+							"key": "deskId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPillar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/pillar/create?title=p2&deskId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pillar",
+						"create"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "p2"
+						},
+						{
+							"key": "deskId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddNewCard",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/card/create?title=To-Do Card&deskId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"card",
+						"create"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "To-Do Card"
+						},
+						{
+							"key": "deskId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editCard",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\":1,\r\n  \"title\": \"New title\",\r\n  \"shortDescription\": \"Still null\",\r\n  \"description\": \"Top 1 Card\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/card/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"card",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPillars",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "createCard",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "editTable",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "MoveCard",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

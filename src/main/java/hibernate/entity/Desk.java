@@ -1,6 +1,8 @@
 package hibernate.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -12,6 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Getter @Setter
 @Table(name = "DESKS")
 public class Desk implements Serializable {
     @Id
@@ -45,22 +48,6 @@ public class Desk implements Serializable {
     )
     private Set<User> users = new HashSet<>();
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Set<Pillar> getPillars() {
-        return pillars;
-    }
-
-    public void setPillars(Set<Pillar> pillars) {
-        this.pillars = pillars;
-    }
-
     public void addPillars(Pillar... pillars) {
         this.pillars.addAll(Arrays.asList(pillars));
     }
@@ -69,44 +56,12 @@ public class Desk implements Serializable {
         this.pillars.add(pillar);
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
     public Desk() {
     }
 
     public Desk(String title, String description, User owner) {
         this.title = title;
         this.owner = owner;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 
